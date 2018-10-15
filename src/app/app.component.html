@@ -1,0 +1,25 @@
+
+<h1>List of Authors</h1>
+<input type="text" #first>
+<input type="text" #last>
+<button (click)="addAuthor(first, last)">Add</button>
+<ul>
+    <li *ngFor="let author of authors | async ">
+      <button (click)="updateAuthor(author.key, first, last)">Update</button>
+      <button (click)="deleteAuthor(author.key)">Delete</button>    
+      {{ author.payload.val().first + ' ' + author.payload.val().last + ' (' + author.key + ')' }}
+    </li>
+  </ul>
+<p>{{ authors | async | json}}</p>
+<hr>
+<h1>List of Courses</h1>
+<input (keyup.enter)="addCourse(name)" type="text" #name>
+<button (click)="addCourse(name)">Add</button>
+<ul>
+    <li *ngFor="let course of courses | async ">
+      <button (click)="updateCourse(course.key, name)">Update</button>
+      <button (click)="deleteCourse(course.key)">Delete</button>      
+      {{ course.payload.val() + ' (' + course.key + ')' }}
+    </li>
+  </ul>
+<p>{{ courses | async | json}}</p>
